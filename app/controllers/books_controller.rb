@@ -1,7 +1,6 @@
 require 'json'
 require 'open-uri'
 
-
 class BooksController < ApplicationController
   def index
   end
@@ -13,8 +12,10 @@ class BooksController < ApplicationController
     q = params[:q]
     url = "https://www.googleapis.com/books/v1/volumes?q=#{q}"
 
-    json = open(url).read
-    data = JSON.parse(json)
+    if params[:q]
+      json = open(url).read
+      data = JSON.parse(json)
+    end
 
     book = data['items'][0]
     info = book['volumeInfo']
@@ -29,6 +30,22 @@ class BooksController < ApplicationController
   end
 
   def create
+    @book = Book.new(book_params)
+    @book.title = params[:book][:title]
+    @book.subtitle = params[:book][:subtitle]
+    @book.author = params[:book][:author]
+    @book.description = params[:book][:description]
+    @book.pages = params[:book][:pages]
+    @book.categories = params[:book][:categories]
+    @book.smallThumbnailUrl = params[:book][:smallThumbUrl]
+    @book.thumbnailUrl = params[:book][:thumbnailUrl]
+    if @book.save!
+      redirect_to dashboard_path
+      flash[:notice] = 'Book Successfully Saved!'
+    else
+      flash[:alert] = 'Oops, something went wrong!'
+      render :new
+    end
   end
 
   def edit
@@ -38,5 +55,11 @@ class BooksController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title, :author, :subtitle, :description, :pages, :completed, :smallThumbnailUrl, :thumbnailUrl, categories: [])
   end
 end

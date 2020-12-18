@@ -1,21 +1,34 @@
 <div class="container">
   <div class="title">New book</div>
-  <%= form_tag(search_path, method: 'get') do %>
+  <%= form_tag(search_path, method: 'get', class: 'form-inline') do %>
     <%= label_tag(:q, "") %>
-    <%= text_field_tag(:q, nil, placeholder: 'Search for a book') %>
-    <%= submit_tag("Search") %>
+    <%= text_field_tag(:q, nil, placeholder: 'Search for a book', class: 'form-control') %>
+    <%= submit_tag("Search", class: 'btn btn-sm btn-theme') %>
   <% end %>
 
-  <div class="results">
-    <ul>
-      <li><%= @title %></li>
-      <li><%= @subtitle %></li>
-      <li><%= @author %></li>
-      <li><%= @description %></li>
-      <li><%= @pages %></li>
-      <li><%= @categories %></li>
-      <li><%= image_tag @smallThumbUrl %></li>
-      <li><%= image_tag @thumbUrl %></li>
-    </ul>
+  <% if params[:q] %>
+    <div class="results mt-3">
+      <div class="card-product">
+        <%= image_tag @smallThumbUrl, alt: "Book Cover" %>
+        <div class="card-product-infos">
+          <h2><%= @title %></h2>
+          <h4><%= @subtitle %></h4>
+          <h5><%= @author %></h5>
+        </div>
+        <div class="card-button">
+          <%= simple_form_for(Book.new, method: 'post', class: 'form-inline') do |f| %>
+            <%= f.hidden_field :title, value: @title %>
+            <%= f.hidden_field :subtitle, value: @subtitle %>
+            <%= f.hidden_field :author, value: @author %>
+            <%= f.hidden_field :description, value: @description %>
+            <%= f.hidden_field :pages, value: @pages %>
+            <%= f.hidden_field :categories, value: @categories %>
+            <%= f.hidden_field :smallThumbnailUrl, value: @smallThumbUrl %>
+            <%= f.hidden_field :thumbnailUrl, value: @thumbUrl %>
+            <%= submit_tag("Save this book", class: 'btn btn-sm btn-theme') %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
