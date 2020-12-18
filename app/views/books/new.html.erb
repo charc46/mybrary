@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="title">New book</div>
+  <%= form_tag(search_path, method: 'get') do %>
+    <%= label_tag(:q, "") %>
+    <%= text_field_tag(:q, nil, placeholder: 'Search for a book') %>
+    <%= submit_tag("Search") %>
+  <% end %>
+
+  <div class="results">
+    <ul>
+      <li><%= @title %></li>
+      <li><%= @subtitle %></li>
+      <li><%= @author %></li>
+      <li><%= @description %></li>
+      <li><%= @pages %></li>
+      <li><%= @categories %></li>
+      <li><%= image_tag @smallThumbUrl %></li>
+      <li><%= image_tag @thumbUrl %></li>
+    </ul>
+  </div>
+</div>
