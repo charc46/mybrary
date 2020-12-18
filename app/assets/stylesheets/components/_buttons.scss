@@ -1,0 +1,17 @@
+.btn-theme {
+  background-color: $yellow;
+  color: $teal;
+  padding: 10px 15px;
+
+  &:hover {
+    color: $teal;
+    opacity: .9;
+  }
+}
+
+.btn-link {
+  color: $teal;
+  &:hover {
+    color: $yellow;
+  }
+}

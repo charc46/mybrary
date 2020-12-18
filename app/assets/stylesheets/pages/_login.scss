@@ -1,0 +1,41 @@
+#login-page {
+  background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ),
+              url('home-background.jpeg');
+  height: 100vh;
+  background-size: cover;
+  background-position: top;
+  padding-top: 14%;
+}
+
+#log-in {
+  width: 30%;
+  height: 250px;
+  margin: 0 auto;
+}
+
+#form {
+  background-color: white;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#inputs {
+  padding: 20px;
+  color: $teal;
+}
+
+#login-title {
+  width: 100%;
+  background-color: $gray;
+  border-radius: 10px 10px 0 0;
+  padding: 5px;
+  color: $teal;
+}
+
+#form-links {
+  width: 70%;
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+}

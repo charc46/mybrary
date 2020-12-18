@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home">
+  <div id="home-text">
+    <div id="home-title" class="title">
+      <h1 class="text-center">Welcome to MyBrary</h1>
+      <h4 class="text-center">Another place that your book collection can call home</h4>
+    </div>
+    <div id="sign-in">
+      <%= link_to 'Log in', new_user_session_path, class: 'btn btn-success' %>
+      <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
