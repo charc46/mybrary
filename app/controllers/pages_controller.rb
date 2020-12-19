@@ -7,8 +7,8 @@ class PagesController < ApplicationController
   def dashboard
     user_books = current_user.books
     @total_books = user_books.count
-    @read_books = user_books.where(:completed == true).count
-    @unread_books = user_books.where(:completed == false).count
+    @read_books = UserBook.complete.count
+    @unread_books = UserBook.not_complete.count
     # Arranging and counting author occurences within the users books
     authors = []
     user_books.each { |book| authors << book.author}
@@ -16,5 +16,18 @@ class PagesController < ApplicationController
     authors.each { |author| authors_count[author] += 1 }
 
     @most_popular_authors = authors_count.sort_by { |k, v| v }.reverse.first(3)
+
+    # Arranging and counting genre occurences within the users books
+    genres = []
+    user_books.each { |book| genres << book.categories}
+    genre_count = Hash.new(0)
+    genres.each { |genre| genre_count[genre] += 1 }
+
+    @most_popular_genres = genre_count.sort_by { |k, v| v }.reverse.first(5)
+
+    # Work out average pages
+    count = []
+    user_books.each { |book| count << book.pages }
+    @average_pages = count.sum / count.length
   end
 end

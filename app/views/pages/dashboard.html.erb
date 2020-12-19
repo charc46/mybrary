@@ -7,8 +7,8 @@
     </div>
     <div id="books-read">
       <h4>Books read</h4>
-      <p><%= @read_books %></p>
-      <p><%= @unread_books %></p>
+      <p>Read: <%= @read_books %></p>
+      <p>Unread: <%= @unread_books %></p>
     </div>
     <div id="popular-author">
       <h4>Most popular author</h4>
@@ -20,9 +20,15 @@
     </div>
     <div id="popular-genre">
       <h4>Most popular genres</h4>
+      <% @most_popular_genres.each do |genre, count| %>
+        <ul>
+          <li><%= "#{genre} - #{count} book".pluralize(count) %></li>
+        </ul>
+      <% end %>
     </div>
     <div id="average-pages">
       <h4>Average pages</h4>
+      <p><%= @average_pages %></p>
     </div>
   </div>
 </div>
