@@ -15,18 +15,18 @@ class BooksController < ApplicationController
     if params[:q]
       json = open(url).read
       data = JSON.parse(json)
-    end
 
-    book = data['items'][0]
-    info = book['volumeInfo']
-    @title = info['title']
-    @subtitle = info['subtitle']
-    @author = info['authors'][0]
-    @description = info['description']
-    @pages = info['pageCount']
-    @categories = info['categories']
-    @smallThumbUrl = info['imageLinks']['smallThumbnail']
-    @thumbUrl = info['imageLinks']['thumbnail']
+      book = data['items'][0]
+      info = book['volumeInfo']
+      @title = info['title']
+      @subtitle = info['subtitle']
+      @author = info['authors'][0]
+      @description = info['description']
+      @pages = info['pageCount']
+      @categories = info['categories']
+      @smallThumbUrl = info['imageLinks']['smallThumbnail']
+      @thumbUrl = info['imageLinks']['thumbnail']
+    end
   end
 
   def create
@@ -40,6 +40,8 @@ class BooksController < ApplicationController
     @book.smallThumbnailUrl = params[:book][:smallThumbUrl]
     @book.thumbnailUrl = params[:book][:thumbnailUrl]
     if @book.save!
+      @user_book = UserBook.new(book_id: @book.id, user_id: current_user.id)
+      @user_book.save!
       redirect_to dashboard_path
       flash[:notice] = 'Book Successfully Saved!'
     else
@@ -58,6 +60,13 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def user_book_params
+    user_id = current_user.id
+    book_id = @book.id
+
+    # params.require(:user_book).permit(:book_id, :user_id)
+  end
 
   def book_params
     params.require(:book).permit(:title, :author, :subtitle, :description, :pages, :completed, :smallThumbnailUrl, :thumbnailUrl, categories: [])

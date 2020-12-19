@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="title">New book</div>
+  <div class="title"><h2>Add a New Book</h2></div>
   <%= form_tag(search_path, method: 'get', class: 'form-inline') do %>
     <%= label_tag(:q, "") %>
     <%= text_field_tag(:q, nil, placeholder: 'Search for a book', class: 'form-control') %>
