@@ -1,1 +1,13 @@
-index.html.erb
+<div class="container">
+  <h1 class="title text-center">Your Books</h1>
+  <% @books.each do |book| %>
+    <div class="card-product">
+      <%= image_tag book.thumbnailUrl, alt: "Book Cover" %>
+      <div class="card-product-infos">
+        <h2><%= book.title %></h2>
+        <h4><%= book.subtitle %></h4>
+        <h5><%= book.author %></h5>
+      </div>
+    </div>
+  <% end %>
+</div>

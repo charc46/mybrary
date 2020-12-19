@@ -1,6 +1,28 @@
 <div class="container">
-  <h1 class="title text-center">Dashboard</h1>
-  <% @books.each do |book| %>
-    <p><%= book.title %></p>
-  <% end %>
+  <h1 class="text-center mb-5 title">Your Dashboard</h1>
+  <div class="dashboard-container">
+    <div id="total-books">
+      <h4>Total books</h4>
+      <%= @total_books %>
+    </div>
+    <div id="books-read">
+      <h4>Books read</h4>
+      <p><%= @read_books %></p>
+      <p><%= @unread_books %></p>
+    </div>
+    <div id="popular-author">
+      <h4>Most popular author</h4>
+      <% @most_popular_authors.each do |author, count| %>
+        <ul>
+          <li><%= "#{author} - #{count} book".pluralize(count) %></li>
+        </ul>
+      <% end %>
+    </div>
+    <div id="popular-genre">
+      <h4>Most popular genres</h4>
+    </div>
+    <div id="average-pages">
+      <h4>Average pages</h4>
+    </div>
+  </div>
 </div>
