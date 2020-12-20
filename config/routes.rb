@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/search', to: 'books#new', as: 'search'
 
   resources :books
+  resources :user_books, only: :update
 end

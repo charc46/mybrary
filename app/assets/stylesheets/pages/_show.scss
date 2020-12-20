@@ -1,0 +1,25 @@
+.show-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#book-cover {
+  height: 250px;
+  margin-right: 20px;
+}
+
+#book-details {
+  display: flex;
+}
+
+#book-description {
+  color: $teal;
+  background-color: $white;
+  padding: 10px;
+
+}
+
+#author_books {
+  display: flex;
+  margin-top: 20px;
+}

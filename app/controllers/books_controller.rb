@@ -7,6 +7,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book = current_user.books.find(params[:id])
+    @author_books = current_user.books.where("author": @book.author)
+    @user_book = UserBook.where("book_id": @book.id )
   end
 
   def new
@@ -61,13 +64,6 @@ class BooksController < ApplicationController
   end
 
   private
-
-  def user_book_params
-    user_id = current_user.id
-    book_id = @book.id
-
-    # params.require(:user_book).permit(:book_id, :user_id)
-  end
 
   def book_params
     params.require(:book).permit(:title, :author, :subtitle, :description, :pages, :completed, :smallThumbnailUrl, :thumbnailUrl, categories: [])
