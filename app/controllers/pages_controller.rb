@@ -30,4 +30,12 @@ class PagesController < ApplicationController
     user_books.each { |book| count << book.pages }
     @average_pages = count.sum / count.length
   end
+
+  def categories
+    @books = current_user.books.where("categories": params[:categories])
+  end
+
+  def author
+    @books = current_user.books.where("author": params[:author])
+  end
 end

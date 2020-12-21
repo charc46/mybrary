@@ -7,8 +7,8 @@
       <div id="book-info">
         <h1 class="title"><%= @book.title %></h1>
         <h4 class="title"><%= @book.subtitle %></h4>
-        <p><%= link_to @book.author, '#', class: 'btn-link' %></p>
-        <p><%= link_to @book.categories, '#', class: 'btn-link' %></p>
+        <p><%= link_to @book.author, author_path(@book.author), class: 'btn-link' %></p>
+        <p><%= link_to @book.categories, categories_path(@book.categories), class: 'btn-link' %></p>
         <%#= form_tag(user_book_path(@user_book, method: 'patch', class: 'form-inline') do %>
           <%#= label_tag(:v, "") %>
           <%#= select_tag :v, options_for_select(true, false), class: 'form-control') %>
