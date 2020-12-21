@@ -1,5 +1,10 @@
 <div class="container">
   <h1 class="title text-center">Your Books</h1>
+  <%= form_tag(books_path, method: 'get', class: 'form-inline') do %>
+    <%= label_tag(:q, "") %>
+    <%= text_field_tag(:q, nil, placeholder: 'Search for a book', class: 'form-control') %>
+    <%= submit_tag("Search", class: 'btn btn-sm btn-theme') %>
+  <% end %>
   <table class="table table-striped mt-5">
     <thead>
       <tr>
@@ -23,4 +28,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate @books, class: 'apple_pagination' %>
 </div>

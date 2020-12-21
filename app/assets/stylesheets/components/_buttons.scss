@@ -15,3 +15,10 @@
     color: $yellow;
   }
 }
+
+.nav-btn-link {
+  color: $yellow;
+  &:hover {
+    color: $gray;
+  }
+}

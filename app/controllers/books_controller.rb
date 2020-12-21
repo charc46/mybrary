@@ -3,7 +3,12 @@ require 'open-uri'
 
 class BooksController < ApplicationController
   def index
-    @books = current_user.books
+    if params[:q]
+      sql_query = "title ILIKE :q OR author ILIKE :q OR categories ILIKE :q"
+      @books = current_user.books.where(sql_query, q: "%#{params[:q]}%").paginate(page: params[:page], per_page: 10)
+    else
+      @books = current_user.books.paginate(page: params[:page], per_page: 10)
+    end
   end
 
   def show

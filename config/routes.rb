@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get '/author/:author', to: 'pages#author', as: 'author'
 
   resources :books
-  resources :user_books, only: :update
+  resources :user_books, only: [:update, :delete]
 end

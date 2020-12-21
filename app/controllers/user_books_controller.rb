@@ -10,6 +10,13 @@ class UserBooksController < ApplicationController
   end
 
   def destroy
+    @book = UserBook.find(params[:id])
+    if @book.delete
+      redirect_to books_path
+      flash[:notice] = "Book deleted"
+    else
+      render :show
+      flash[:notice] = "Oops, something went wrong"
   end
 
   private

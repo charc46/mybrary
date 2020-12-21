@@ -2,28 +2,26 @@
   <h1 class="text-center mb-5 title">Your Dashboard</h1>
   <div class="dashboard-container">
     <div id="total-books">
-      <h4>Total books</h4>
-      <%= @total_books %>
+      <div>
+        <h2 id="book-count"><%= @total_books %></h2>
+        <p class="text-center"><small>Books in your collection</small></p>
+      </div>
     </div>
     <div id="books-read">
-      <h4>Books read</h4>
-      <p>Read: <%= @read_books %></p>
-      <p>Unread: <%= @unread_books %></p>
+      <h4 class="text-center">Progress</h4>
+      <p>You have completed <%= "#{@read_books} out of your #{@total_books} books" %></p>
+      <p><%= "#{@unread_books} to go!" %></p>
     </div>
     <div id="popular-author">
-      <h4>Most popular author</h4>
+      <h4>Most popular authors</h4>
       <% @most_popular_authors.each do |author, count| %>
-        <ul>
-          <li><%= "#{author} - #{count} book".pluralize(count) %></li>
-        </ul>
+        <li class="list-group-item"><%= link_to "#{author}", author_path(author), class: "btn-link" %> <%= " - #{count} book".pluralize(count) %></li>
       <% end %>
     </div>
     <div id="popular-genre">
       <h4>Most popular genres</h4>
       <% @most_popular_genres.each do |genre, count| %>
-        <ul>
-          <li><%= "#{genre} - #{count} book".pluralize(count) %></li>
-        </ul>
+        <li class="list-group-item"><%= link_to "#{genre}", categories_path(genre), class: "btn-link" %> <%= " - #{count} book".pluralize(count) %></li>
       <% end %>
     </div>
     <div id="average-pages">
