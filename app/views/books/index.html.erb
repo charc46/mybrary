@@ -1,10 +1,14 @@
 <div class="container">
   <h1 class="title text-center">Your Books</h1>
-  <%= form_tag(books_path, method: 'get', class: 'form-inline') do %>
-    <%= label_tag(:q, "") %>
-    <%= text_field_tag(:q, nil, placeholder: 'Search for a book', class: 'form-control') %>
-    <%= submit_tag("Search", class: 'btn btn-sm btn-theme') %>
-  <% end %>
+  <div class="search">
+    <div id="search-form">
+      <%= form_tag(books_path, method: 'get', class: 'form-inline') do %>
+        <%= label_tag(:q, "") %>
+        <%= text_field_tag(:q, nil, placeholder: 'Search for a book', class: 'form-control') %>
+        <%= submit_tag("Search", class: 'btn btn-sm btn-theme') %>
+      <% end %>
+    </div>
+  </div>
   <table class="table table-striped mt-5">
     <thead>
       <tr>

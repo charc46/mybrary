@@ -14,7 +14,8 @@ class BooksController < ApplicationController
   def show
     @book = current_user.books.find(params[:id])
     @author_books = current_user.books.where("author": @book.author)
-    @user_book = UserBook.where("book_id": @book.id )
+    user_book = UserBook.where("book_id": @book.id, "user_id": current_user.id )
+    @user_book = user_book[0]
   end
 
   def new

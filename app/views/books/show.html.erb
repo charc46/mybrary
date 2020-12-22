@@ -9,12 +9,12 @@
         <h4 class="title"><%= @book.subtitle %></h4>
         <p><%= link_to @book.author, author_path(@book.author), class: 'btn-link' %></p>
         <p><%= link_to @book.categories, categories_path(@book.categories), class: 'btn-link' %></p>
-        <p><%= link_to "Delete Book", user_book_path, method: :delete, class: 'btn btn-theme' %></p>
-        <%#= form_tag(user_book_path(@user_book, method: 'patch', class: 'form-inline') do %>
-          <%#= label_tag(:v, "") %>
-          <%#= select_tag :v, options_for_select(true, false), class: 'form-control') %>
-          <%#= submit_tag("Search", class: 'btn btn-sm btn-theme') %>
-        <%# end %>
+        <p><%= link_to "Delete Book", user_book_path(@user_book.id), method: :delete, class: 'btn btn-theme', data: { confirm: "Are you sure?" } %></p>
+        <% if @user_book.completed == false %>
+          <p><%= link_to "Mark as complete", complete_book_path(@user_book.id), method: :patch, class: 'btn btn-theme'%></p>
+        <% else %>
+          <p><%= link_to "Mark as incomplete", complete_book_path(@user_book.id), method: :patch, class: 'btn btn-theme'%></p>
+        <% end %>
       </div>
     </div>
     <div id="book-description">
