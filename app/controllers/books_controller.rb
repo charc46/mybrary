@@ -43,7 +43,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.title = params[:book][:title]
     @book.subtitle = params[:book][:subtitle]
-    @book.author = params[:book][:author]
+    @book.author = params[:book][:author].gsub(".", "")
     @book.description = params[:book][:description]
     @book.pages = params[:book][:pages]
     @book.categories = params[:book][:categories]

@@ -1,0 +1,21 @@
+<div class="card-product">
+  <%= image_tag book.smallThumbUrl, alt: "Book Cover" %>
+  <div class="card-product-infos">
+    <h2><%= book.title %></h2>
+    <h4><%= book.subtitle %></h4>
+    <h5><%= book.author %></h5>
+  </div>
+  <div class="card-button">
+    <%= simple_form_for(Book.new, method: 'post', class: 'form-inline') do |f| %>
+      <%= f.hidden_field :title, value: book.title %>
+      <%= f.hidden_field :subtitle, value: book.subtitle %>
+      <%= f.hidden_field :author, value: book.author %>
+      <%= f.hidden_field :description, value: book.description %>
+      <%= f.hidden_field :pages, value: book.pages %>
+      <%= f.hidden_field :categories, value: book.categories %>
+      <%= f.hidden_field :smallThumbnailUrl, value: book.smallThumbUrl %>
+      <%= f.hidden_field :thumbnailUrl, value: book.thumbUrl %>
+      <%= submit_tag("Save this book", class: 'btn btn-sm btn-theme') %>
+    <% end %>
+  </div>
+</div>

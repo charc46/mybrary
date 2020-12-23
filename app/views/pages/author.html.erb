@@ -1,3 +1,4 @@
-<% @books.each do |book| %>
-  <%= book.title %>
-<% end %>
+<div class="container">
+  <h1 class="title text-center"><%= @author %> Books</h1>
+  <%= render 'shared/books_table' %>
+</div>

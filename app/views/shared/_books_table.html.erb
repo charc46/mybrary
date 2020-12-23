@@ -1,0 +1,32 @@
+<div class="search">
+  <div id="search-form">
+    <%= form_tag(books_path, method: 'get') do %>
+      <%= label_tag(:q, "") %>
+      <%= text_field_tag(:q, nil, placeholder: 'Search for a book', class: 'form-control') %>
+      <%= submit_tag("Search", class: 'btn btn-theme form-control') %>
+    <% end %>
+  </div>
+</div>
+<table class="table table-striped mt-5">
+  <thead>
+    <tr>
+      <th class="index-table" scope="col"></th>
+      <th class="index-table" scope="col">Title</th>
+      <th class="index-table" scope="col">Author</th>
+      <th class="index-table" scope="col">Genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <th scope="row"><%= image_tag book.thumbnailUrl, class: 'book-thumb' %></th>
+        <td>
+          <h4 class="index-table table-text"><%= link_to book.title, book_path(book.id) %></h4>
+          <p class="index-table table-text"><%= book.subtitle %></p>
+        </td>
+        <td class="index-table table-text"><%= link_to book.author, author_path(book.author) %></td>
+        <td class="index-table table-text"><%= link_to book.categories, categories_path(book.categories) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

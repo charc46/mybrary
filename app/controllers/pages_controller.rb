@@ -12,7 +12,7 @@ class PagesController < ApplicationController
       @unread_books = current_user.user_books.not_complete.count
       # Arranging and counting author occurences within the users books
       authors = []
-      user_books.each { |book| authors << book.author}
+      user_books.each { |book| authors << book.author }
       authors_count = Hash.new(0)
       authors.each { |author| authors_count[author] += 1 }
 
@@ -29,15 +29,17 @@ class PagesController < ApplicationController
       # Work out average pages
       count = []
       user_books.each { |book| count << book.pages }
-      @average_pages = count.sum / count.length if count.length > 0
+      @average_pages = count.sum / count.length unless count.empty?
     end
   end
 
   def categories
+    @categories = params[:categories]
     @books = current_user.books.where("categories": params[:categories])
   end
 
   def author
+    @author = params[:author]
     @books = current_user.books.where("author": params[:author])
   end
 end
