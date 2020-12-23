@@ -2,16 +2,10 @@ class UserBooksController < ApplicationController
   def create
   end
 
-  def mark_as_complete
-    user_book = UserBook.where("book_id": UserBook.find(params[:id]).book_id, "user_id": current_user.id)
-    @user_book = user_book[0]
-    @user_book.completed ? @user_book.completed == false : @user_book.completed == true
-  end
-
   def update
-    user_book = UserBook.where("book_id": UserBook.find(params[:id]).book_id, "user_id": current_user.id)
-    @user_book = user_book[0]
-    @user_book.update(book_params)
+    @user_book = UserBook.find(params[:id])
+    book = Book.find(@user_book.book_id)
+    @user_book.update(completed: params[:completed])
     if @user_book.save
       redirect_to book_path(book.id)
       flash[:notice] = "Book sucessfully updated"

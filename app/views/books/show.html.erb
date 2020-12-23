@@ -11,9 +11,19 @@
         <p><%= link_to @book.categories, categories_path(@book.categories), class: 'btn-link' %></p>
         <p><%= link_to "Delete Book", user_book_path(@user_book.id), method: :delete, class: 'btn btn-theme', data: { confirm: "Are you sure?" } %></p>
         <% if @user_book.completed == false %>
-          <p><%= link_to "Mark as complete", complete_book_path(@user_book.id), method: :patch, class: 'btn btn-theme'%></p>
+          <p>
+            <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
+              <%= hidden_field_tag :completed, value: true %>
+              <%= submit_tag("Mark As Read", class: 'btn btn-sm btn-theme') %>
+            <% end %>
+          </p>
         <% else %>
-          <p><%= link_to "Mark as incomplete", complete_book_path(@user_book.id), method: :patch, class: 'btn btn-theme'%></p>
+          <p>
+            <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
+              <%= hidden_field_tag :completed, value: false %>
+              <%= submit_tag("Mark As Unread", class: 'btn btn-sm btn-theme') %>
+            <% end %>
+          </p>
         <% end %>
       </div>
     </div>
