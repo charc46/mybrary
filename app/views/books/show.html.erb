@@ -9,18 +9,20 @@
         <h4 class="title"><%= @book.subtitle %></h4>
         <p><%= link_to @book.author, author_path(@book.author), class: 'btn-link' %></p>
         <p><%= link_to @book.categories, categories_path(@book.categories), class: 'btn-link' %></p>
-        <p><%= link_to "Delete Book", user_book_path(@user_book.id), method: :delete, class: 'btn btn-theme', data: { confirm: "Are you sure?" } %></p>
-        <% if @user_book.completed == false %>
-          <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
-            <%= hidden_field_tag :completed, value: true %>
-            <%= submit_tag("Mark As Read", class: 'btn btn-sm btn-theme') %>
+        <div class="show-buttons">
+          <% if @user_book.completed == false %>
+            <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
+              <%= hidden_field_tag :completed, true %>
+              <%= submit_tag("Mark As Read", class: 'btn btn-theme') %>
+            <% end %>
+          <% else %>
+            <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
+              <%= hidden_field_tag :completed, false %>
+              <%= submit_tag("Mark As Unread", class: 'btn btn-theme') %>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
-            <%= hidden_field_tag :completed, value: false %>
-            <%= submit_tag("Mark As Unread", class: 'btn btn-sm btn-theme') %>
-          <% end %>
-        <% end %>
+          <%= link_to "Delete Book", user_book_path(@user_book.id), method: :delete, class: 'btn btn-theme ml-2', data: { confirm: "Are you sure?" } %>
+        </div>
       </div>
     </div>
     <div id="book-description">
