@@ -2,6 +2,19 @@ class UserBooksController < ApplicationController
   def create
   end
 
+  def add_to_favourite
+    @user_book = UserBook.find(params[:id])
+    book = Book.find(@user_book.book_id)
+    @user_book.update(favourites: params[:favourites])
+    if @user_book.save
+      redirect_to book_path(book.id)
+      @user_book.favourites == true ? flash[:notice] = "Added to favourites!" : flash[:notice] = "Removed from favourites!"
+    else
+      render :show
+      flash[:alert] = "Something went wrong"
+    end
+  end
+
   def update
     @user_book = UserBook.find(params[:id])
     book = Book.find(@user_book.book_id)

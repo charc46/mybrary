@@ -1,0 +1,11 @@
+<% if @user_book.completed == false %>
+  <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
+    <%= hidden_field_tag :completed, true %>
+    <%= submit_tag("Mark As Read", class: 'btn btn-theme') %>
+  <% end %>
+<% else %>
+  <%= form_tag(user_book_path(@user_book.id), method: 'patch', class: 'form-inline') do %>
+    <%= hidden_field_tag :completed, false %>
+    <%= submit_tag("Mark As Unread", class: 'btn btn-theme') %>
+  <% end %>
+<% end %>

@@ -21,11 +21,11 @@
       <tr>
         <th scope="row"><%= image_tag book.thumbnailUrl, class: 'book-thumb' %></th>
         <td>
-          <h4 class="index-table table-text"><%= link_to book.title, book_path(book.id) %></h4>
+          <h4 class="index-table table-text"><%= link_to book.title, book_path(book.id), class: "btn-link" %></h4>
           <p class="index-table table-text"><%= book.subtitle %></p>
         </td>
-        <td class="index-table table-text"><%= link_to book.author, author_path(book.author) %></td>
-        <td class="index-table table-text"><%= link_to book.categories, categories_path(book.categories) %></td>
+        <td class="index-table table-text"><%= link_to book.author, author_path(book.author), class: "btn-link" %></td>
+        <td class="index-table table-text"><%= link_to book.categories, categories_path(book.categories), class: "btn-link" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,9 @@
+<%= form_tag(favourite_book_path(@user_book.id), method: 'get', class: 'form-inline') do %>
+  <% if @user_book.favourites == false %>
+    <%= hidden_field_tag :favourites, true %>
+    <%= submit_tag("Add to Favourites", class: 'btn btn-theme') %>
+  <% else %>
+    <%= hidden_field_tag :favourites, false %>
+    <%= submit_tag("Remove from Favourites", class: 'btn btn-theme') %>
+  <% end %>
+<% end %>

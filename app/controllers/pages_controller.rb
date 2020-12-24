@@ -42,4 +42,9 @@ class PagesController < ApplicationController
     @author = params[:author]
     @books = current_user.books.where("author": params[:author])
   end
+
+  def favourites
+    books = current_user.user_books.where('favourites': true)
+    @books = books.map { |book| Book.find(book.book_id)}
+  end
 end
