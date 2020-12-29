@@ -1,6 +1,6 @@
-<h1>Your friends</h1>
+<h1 class="title text-center">Your friends</h1>
 
-<div class="search-form">
+<div class="user-search-form">
   <%= form_tag(search_user_path, method: 'get') do %>
     <%= label_tag(:q, "") %>
     <%= text_field_tag(:q, nil, placeholder: 'Search for a user', class: 'form-control') %>
@@ -8,9 +8,11 @@
   <% end %>
 </div>
 
-<% if params[:q] %>
-  <%= render 'shared/user_table' %>
-<% else %>
-  <%= render 'shared/friends_table' %>
-<% end %>
+<div class="user-table">
+  <% if params[:q] %>
+    <%= render 'shared/user_table' %>
+  <% else %>
+    <%= render 'shared/friends_table' %>
+  <% end %>
+</div>
 
