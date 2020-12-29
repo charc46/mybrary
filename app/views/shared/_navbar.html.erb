@@ -13,7 +13,7 @@
       <% if user_signed_in? %>
         <li class="nav-item active">
           <%= link_to "Dashboard", dashboard_path, class: "btn nav-btn-link" %>
-          <%= link_to "Friends", '#', class: "btn nav-btn-link" %>
+          <%= link_to "Friends", follows_path, class: "btn nav-btn-link" %>
         </li>
         <li class="nav-item dropdown">
           <%= link_to "Books", '#',  class: "btn nav-btn-link dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
