@@ -8,10 +8,21 @@ class FollowsController < ApplicationController
       @followings = current_user.followees
     end
   end
-  
+
   def create
+    follow = Follow.new(follower_id: current_user.id, followee_id: params[:id])
+    if follow.save
+      redirect_to follows_path
+      flash[:notice] = "New following!"
+    else
+      render :index
+      flash[:alert] = "Oops, something went wrong!"
+    end
   end
 
-  def delete
+  def destroy
+    follow = Follow.find(params[:id])
+    follow.destroy
+    redirect_to follows_path
   end
 end

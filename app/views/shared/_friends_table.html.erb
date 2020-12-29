@@ -1,0 +1,63 @@
+<ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="btn btn-theme active mr-2" id="pills-followers-tab" data-toggle="pill" href="#pills-followers" role="tab" aria-controls="pills-followers" aria-selected="true">Followers</a>
+  </li>
+  <li class="nav-item">
+    <a class="btn btn-theme" id="pills-following-tab" data-toggle="pill" href="#pills-following" role="tab" aria-controls="pills-following" aria-selected="false">Following</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-followers" role="tabpanel" aria-labelledby="pills-followers-tab">
+    <table class="table table-striped mt-5">
+      <thead>
+        <tr>
+          <th class="index-table" scope="col"></th>
+          <th class="index-table" scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @followers.each do |follower|  %> <!-- Those who are following current_user -->
+          <tr>
+            <th scope="row">Profile photo</th>
+            <td>
+              <h4 class="index-table table-text">Username ( link_to profile page )</h4>
+              <p class="index-table table-text"><%= follower.email %></p>
+            </td>
+            <td class="index-table table-text">
+              <% if current_user.followers.include? follower %>
+                <%= link_to "Unfollow", follow_path(current_user.following_users.where(follower_id: follower.id)[0]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-theme" %>
+              <% else %>
+                <%= link_to "Follow", follow_user_path(follower.id), method: :post, class: "btn btn-sm btn-theme" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tab-pane fade" id="pills-following" role="tabpanel" aria-labelledby="pills-following-tab">
+    <table class="table table-striped mt-5">
+      <thead>
+        <tr>
+          <th class="index-table" scope="col"></th>
+          <th class="index-table" scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @followings.each do |following| %> <!-- Those who current_user are following -->
+          <tr>
+            <th scope="row">Profile photo</th>
+            <td>
+              <h4 class="index-table table-text">Username ( link_to profile page )</h4>
+              <p class="index-table table-text"><%= following.email %></p>
+            </td>
+            <td class="index-table table-text">
+              <%= link_to "Unfollow", follow_path(current_user.followed_users.where(followee_id: following.id)[0]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-theme" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

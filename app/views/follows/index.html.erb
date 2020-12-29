@@ -9,8 +9,8 @@
 </div>
 
 <% if params[:q] %>
-  <% @users.each do |user| %>
-    <h4><%= user.email %></h4>
-  <% end %>
+  <%= render 'shared/user_table' %>
+<% else %>
+  <%= render 'shared/friends_table' %>
 <% end %>
 

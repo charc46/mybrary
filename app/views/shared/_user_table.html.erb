@@ -1,0 +1,26 @@
+<table class="table table-striped mt-5">
+  <thead>
+    <tr>
+      <th class="index-table" scope="col"></th>
+      <th class="index-table" scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <th scope="row">Profile photo</th>
+        <td>
+          <h4 class="index-table table-text">Username ( link_to profile page )</h4>
+          <p class="index-table table-text"><%= user.email %></p>
+        </td>
+        <td class="index-table table-text">
+          <% if current_user.following_users.include? user %>
+            <%= link_to "Unfollow", follows_path, method: :delete, class: "btn btn-sm btn-theme" %>
+          <% else %>
+            <%= link_to "Follow", follow_user_path(user.id), method: :post, class: "btn btn-sm btn-theme" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

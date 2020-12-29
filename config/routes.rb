@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/user_books/:id', to: 'user_books#add_to_favourite', as: 'favourite_book'
   get '/favourites', to: 'pages#favourites', as: 'favourites'
   get '/user_search', to: 'follows#index', as: 'search_user'
+  post '/follow/:id', to: 'follows#create', as: 'follow_user'
 
   resources :books
   resources :user_books, only: [:update, :destroy]
