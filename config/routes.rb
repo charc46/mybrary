@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'follows/create'
   get 'follows/delete'
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "my_devise/registrations" }
   root to: 'pages#home'
 
   get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
