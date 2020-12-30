@@ -21,7 +21,7 @@
             <th scope="row">Profile photo</th>
             <td>
               <h4 class="index-table table-text">Username ( link_to profile page )</h4>
-              <p class="index-table table-text"><%= follower.email %></p>
+              <p class="index-table table-text"><%= link_to follower.email, profile_path(follower.id), class: 'btn-link' %></p>
             </td>
             <td class="index-table table-text">
               <% if current_user.followers.include? follower %>
@@ -50,7 +50,7 @@
             <th scope="row">Profile photo</th>
             <td>
               <h4 class="index-table table-text">Username ( link_to profile page )</h4>
-              <p class="index-table table-text"><%= following.email %></p>
+              <p class="index-table table-text"><%= link_to following.email, profile_path(following.id), class: 'btn-link' %></p>
             </td>
             <td class="index-table table-text">
               <%= link_to "Unfollow", follow_path(current_user.followed_users.where(followee_id: following.id)[0]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-theme" %>

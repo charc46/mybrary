@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/favourites', to: 'pages#favourites', as: 'favourites'
   get '/user_search', to: 'follows#index', as: 'search_user'
   post '/follow/:id', to: 'follows#create', as: 'follow_user'
-
+  get '/profile/:id', to: 'pages#profile', as: 'profile'
   resources :books
   resources :user_books, only: [:update, :destroy]
   resources :follows, only: [:index, :create, :destroy]

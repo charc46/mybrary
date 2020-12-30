@@ -11,7 +11,7 @@
         <th scope="row">Profile photo</th>
         <td>
           <h4 class="index-table table-text">Username ( link_to profile page )</h4>
-          <p class="index-table table-text"><%= user.email %></p>
+          <p class="index-table table-text"><%= link_to user.email, profile_path(user.id), class: 'btn-link' %></p>
         </td>
         <td class="index-table table-text">
           <% if current_user.following_users.include? user %>
