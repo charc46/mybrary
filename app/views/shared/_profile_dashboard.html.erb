@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="text-center mb-5 title"><%= "Public Dashboard for #{@user.username}" %></h1>
+  <div class="dashboard-container">
+    <% if @books %>
+      <div id="total-books">
+        <div>
+          <h2 id="book-count"><%= @books.count %></h2>
+          <p class="text-center"><small><%= "Books in #{@user.username} collection."%></small></p>
+        </div>
+      </div>
+      <div id="popular-author">
+        <h4>Most popular authors</h4>
+        <% @most_popular_authors.each do |author, count| %>
+          <li class="list-group-item"><%= link_to "#{author}", author_path(author), class: "btn-link" %> <%= " - #{count} book".pluralize(count) %></li>
+        <% end %>
+      </div>
+      <div id="popular-genre">
+        <h4>Most popular genres</h4>
+        <% @most_popular_genres.each do |genre, count| %>
+          <li class="list-group-item"><%= link_to "#{genre}", categories_path(genre), class: "btn-link" %> <%= " - #{count} book".pluralize(count) %></li>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.user-container {
+  display: flex;
+}
+
+.user-photo {
+  width: 150px;
+  height: 150px;
+  margin-right: 25px;
+}
+
+.profile-followings {
+  height: 350px;
+  overflow: scroll;
+}

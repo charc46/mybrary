@@ -50,5 +50,21 @@ class PagesController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
+    @books = @user.books
+
+    authors = []
+    @books.each { |book| authors << book.author }
+    authors_count = Hash.new(0)
+    authors.each { |author| authors_count[author] += 1 }
+
+    @most_popular_authors = authors_count.sort_by { |k, v| v }.reverse.first(3)
+
+    # Arranging and counting genre occurences within the users books
+    genres = []
+    @books.each { |book| genres << book.categories}
+    genre_count = Hash.new(0)
+    genres.each { |genre| genre_count[genre] += 1 }
+
+    @most_popular_genres = genre_count.sort_by { |k, v| v }.reverse.first(5)
   end
 end
