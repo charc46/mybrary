@@ -11,16 +11,15 @@
     <table class="table table-striped mt-5">
       <thead>
         <tr>
-          <th class="index-table" scope="col"></th>
           <th class="index-table" scope="col">Details</th>
+          <th class="index-table" scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @followers.each do |follower|  %> <!-- Those who are following current_user -->
           <tr>
-            <th scope="row">Profile photo</th>
             <td>
-              <h4 class="index-table table-text">Username ( link_to profile page )</h4>
+              <h4 class="index-table table-text"><%= link_to follower.username, profile_path(follower.id), class: 'btn-link'  %></h4>
               <p class="index-table table-text"><%= link_to follower.email, profile_path(follower.id), class: 'btn-link' %></p>
             </td>
             <td class="index-table table-text">
@@ -40,16 +39,15 @@
     <table class="table table-striped mt-5">
       <thead>
         <tr>
-          <th class="index-table" scope="col"></th>
           <th class="index-table" scope="col">Details</th>
+          <th class="index-table" scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @followings.each do |following| %> <!-- Those who current_user are following -->
           <tr>
-            <th scope="row">Profile photo</th>
             <td>
-              <h4 class="index-table table-text">Username ( link_to profile page )</h4>
+              <h4 class="index-table table-text"><%= link_to following.username, profile_path(following.id), class: 'btn-link'  %></h4>
               <p class="index-table table-text"><%= link_to following.email, profile_path(following.id), class: 'btn-link' %></p>
             </td>
             <td class="index-table table-text">

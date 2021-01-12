@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="show-container">
+    <div id="book-details">
+
+      <div id="book-cover">
+        <%= image_tag @book.thumbnailUrl, alt: "Cover for #{@book.title}" %>
+      </div>
+      <div id="book-info">
+        <h1 class="title"><%= @book.title %></h1>
+        <h4 class="title"><%= @book.subtitle %></h4>
+        <p><%= link_to @book.author, author_path(@book.author), class: 'btn-link' %></p>
+        <p><%= link_to @book.categories, categories_path(@book.categories), class: 'btn-link' %></p>
+        <div class="show-buttons mb-4">
+          <div class="card-button">
+            <%= simple_form_for(UserBook.new, method: 'post', class: 'form-inline') do |f| %>
+              <%= f.hidden_field :user_id, value: @title %>
+              <%= f.hidden_field :subtitle, value: @subtitle %>
+              <%= f.hidden_field :author, value: @author %>
+              <%= f.hidden_field :description, value: @description %>
+              <%= f.hidden_field :pages, value: @pages %>
+              <%= f.hidden_field :categories, value: @categories %>
+              <%= f.hidden_field :smallThumbnailUrl, value: @smallThumbUrl %>
+              <%= f.hidden_field :thumbnailUrl, value: @thumbUrl %>
+              <%= submit_tag("Add to library", class: 'btn btn-sm btn-theme') %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="book-description">
+    <h4 class="title">Description</h4>
+      <p><%= @book.description %></p>
+    </div>
+  </div>
+</div>

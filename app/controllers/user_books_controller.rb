@@ -1,5 +1,22 @@
 class UserBooksController < ApplicationController
+  def index
+    @user = User.find(params[:id])
+    @books = @user.books
+  end
+
+  def show
+    @book = Book.find(params[:id])
+  end
+
   def create
+    @user_book = UserBook.new(user_id: current_user.id, book_id: params[:id])
+    if @user_book.save!
+      redirect_to user_book_path(@user_book.id)
+      flash[:notice] = "Book saved"
+    else
+      render :show
+      flash[:alert] = "Oops, something went wrong"
+    end
   end
 
   def add_to_favourite

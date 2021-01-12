@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 
       # Arranging and counting genre occurences within the users books
       genres = []
-      user_books.each { |book| genres << book.categories}
+      user_books.each { |book| genres << book.categories }
       genre_count = Hash.new(0)
       genres.each { |genre| genre_count[genre] += 1 }
 
@@ -28,7 +28,7 @@ class PagesController < ApplicationController
 
       # Work out average pages
       count = []
-      user_books.each { |book| count << book.pages }
+      user_books.each { |book| count << book.pages unless book.pages.nil? }
       @average_pages = count.sum / count.length unless count.empty?
     end
   end

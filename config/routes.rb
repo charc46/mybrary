@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   get '/user_search', to: 'follows#index', as: 'search_user'
   post '/follow/:id', to: 'follows#create', as: 'follow_user'
   get '/profile/:id', to: 'pages#profile', as: 'profile'
+  get '/users_books/:id', to: 'user_books#index', as: 'users_books'
+  get '/users_book/:id', to: 'user_books#show', as: 'users_book'
   
   resources :books
-  resources :user_books, only: [:update, :destroy]
+  resources :user_books, only: [:create, :update, :destroy]
   resources :follows, only: [:index, :create, :destroy]
 end
