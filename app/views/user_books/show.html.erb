@@ -12,15 +12,14 @@
         <p><%= link_to @book.categories, categories_path(@book.categories), class: 'btn-link' %></p>
         <div class="show-buttons mb-4">
           <div class="card-button">
-            <%= simple_form_for(UserBook.new, method: 'post', class: 'form-inline') do |f| %>
-              <%= f.hidden_field :user_id, value: @title %>
-              <%= f.hidden_field :subtitle, value: @subtitle %>
-              <%= f.hidden_field :author, value: @author %>
-              <%= f.hidden_field :description, value: @description %>
-              <%= f.hidden_field :pages, value: @pages %>
-              <%= f.hidden_field :categories, value: @categories %>
-              <%= f.hidden_field :smallThumbnailUrl, value: @smallThumbUrl %>
-              <%= f.hidden_field :thumbnailUrl, value: @thumbUrl %>
+            <%= simple_form_for(Book.new, method: 'post', class: 'form-inline') do |f| %>
+              <%= f.hidden_field :title, value: @book.title %>
+              <%= f.hidden_field :subtitle, value: @book.subtitle %>
+              <%= f.hidden_field :author, value: @book.author %>
+              <%= f.hidden_field :description, value: @book.description %>
+              <%= f.hidden_field :pages, value: @book.pages %>
+              <%= f.hidden_field :categories, value: @book.categories %>
+              <%= f.hidden_field :thumbnailUrl, value: @book.thumbnailUrl %>
               <%= submit_tag("Add to library", class: 'btn btn-sm btn-theme') %>
             <% end %>
           </div>

@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 
       # Arranging and counting genre occurences within the users books
       genres = []
-      user_books.each { |book| genres << book.categories }
+      user_books.each { |book| genres << book.categories unless book.categories == "" }
       genre_count = Hash.new(0)
       genres.each { |genre| genre_count[genre] += 1 }
 

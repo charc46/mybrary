@@ -9,7 +9,8 @@ class UserBooksController < ApplicationController
   end
 
   def create
-    @user_book = UserBook.new(user_id: current_user.id, book_id: params[:id])
+    @book = Book.find(params[:id])
+    @user_book = UserBook.new(user_id: current_user.id, book_id: @book.id)
     if @user_book.save!
       redirect_to user_book_path(@user_book.id)
       flash[:notice] = "Book saved"
