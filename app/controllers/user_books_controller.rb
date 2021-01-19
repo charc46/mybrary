@@ -2,6 +2,12 @@ class UserBooksController < ApplicationController
   def index
     @user = User.find(params[:id])
     @books = @user.books
+    if params[:q]
+      sql_query = "title ILIKE :q OR author ILIKE :q OR categories ILIKE :q"
+      @books = @user.books.where(sql_query, q: "%#{params[:q]}%").paginate(page: params[:page], per_page: 10)
+    else
+      @books = @user.books.paginate(page: params[:page], per_page: 10)
+    end
   end
 
   def show

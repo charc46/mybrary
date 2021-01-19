@@ -2,7 +2,7 @@
   <h1 class="title text-center"><%= @user.username %>'s books</h1>
   <div class="search">
   <div id="search-form">
-    <%= form_tag(books_path, method: 'get') do %>
+    <%= form_tag(users_books_path, method: 'get') do %>
       <%= label_tag(:q, "") %>
       <%= text_field_tag(:q, nil, placeholder: 'Search for a book', class: 'form-control') %>
       <%= submit_tag("Search", class: 'btn btn-theme form-control') %>
