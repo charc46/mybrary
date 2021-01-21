@@ -1,9 +1,6 @@
 <div class="container">
   <div class="show-container">
     <div id="book-details">
-      <div id="book-cover">
-        <%= image_tag @book.thumbnailUrl, alt: "Cover for #{@book.title}" %>
-      </div>
       <div id="book-info">
         <h1 class="title"><%= @book.title %><%= render "books/favourite_form" %></h1>
         <h4 class="title"><%= @book.subtitle %></h4>
@@ -13,6 +10,9 @@
           <%= render "books/book_read_form" %>
           <%= link_to "Delete Book", user_book_path(@user_book.id), method: :delete, class: 'btn btn-theme ml-2', data: { confirm: "Are you sure?" } %>
         </div>
+      </div>
+      <div id="book-cover">
+        <%= image_tag @book.thumbnailUrl, alt: "Cover for #{@book.title}" %>
       </div>
     </div>
     <div id="book-description">

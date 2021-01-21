@@ -1,30 +1,30 @@
   <div class="followings">
     <ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
       <li class="nav-item">
-        <a class="btn btn-theme active mr-2" id="pills-followers-tab" data-toggle="pill" href="#pills-followers" role="tab" aria-controls="pills-followers" aria-selected="true">Following</a>
+        <a class="btn btn-theme active mr-2" id="pills-followers-tab" data-toggle="pill" href="#pills-followers" role="tab" aria-controls="pills-followers" aria-selected="true">Followers</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-theme" id="pills-following-tab" data-toggle="pill" href="#pills-following" role="tab" aria-controls="pills-following" aria-selected="false">Followers</a>
+        <a class="btn btn-theme" id="pills-following-tab" data-toggle="pill" href="#pills-following" role="tab" aria-controls="pills-following" aria-selected="false">Following</a>
       </li>
     </ul>
     <div class="tab-content profile-followings" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-followers" role="tabpanel" aria-labelledby="pills-followers-tab">
+        <h2>Followers</h2>
         <table class="table table-striped mt-5">
           <thead>
             <tr>
-              <th class="index-table" scope="col"></th>
-              <th class="index-table" scope="col">Details</th>
+              <th class="index-table" scope="col">Name</th>
+              <th class="index-table" scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <% @user.followers.each do |follower|  %> <!-- Those who are following user -->
+            <% @user.followers.each do |follower|  %> <!-- Those who are following current_user -->
               <tr>
-                <th scope="row">Profile photo</th>
                 <td>
-                  <h4 class="index-table table-text"><%= link_to follower.username, profile_path(follower.id), class: 'btn-link' %></h4>
+                  <h4 class="index-table table-text"><%= link_to follower.username, profile_path(follower.id), class: 'btn-link'  %></h4>
                 </td>
                 <td class="index-table table-text">
-                  <% unless follower.id == current_user.id %>
+                  <% unless follower == current_user %>
                     <% if current_user.followers.include? follower %>
                       <%= link_to "Unfollow", follow_path(current_user.following_users.where(follower_id: follower.id)[0]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-theme" %>
                     <% else %>
@@ -33,34 +33,28 @@
                   <% end %>
                 </td>
               </tr>
-            <% end %>
+          <% end %>
           </tbody>
         </table>
       </div>
 
       <div class="tab-pane fade" id="pills-following" role="tabpanel" aria-labelledby="pills-following-tab">
+        <h2>Following</h2>
         <table class="table table-striped mt-5">
           <thead>
             <tr>
-              <th class="index-table" scope="col"></th>
-              <th class="index-table" scope="col">Details</th>
+              <th class="index-table" scope="col">Name</th>
+              <th class="index-table" scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <% @user.followees.each do |following| %> <!-- Those who user are following -->
+            <% @user.followees.each do |following| %> <!-- Those who user is following -->
               <tr>
-                <th scope="row">Profile photo</th>
                 <td>
-                  <h4 class="index-table table-text"><%= link_to following.username, profile_path(following.id), class: 'btn-link' %></h4>
+                  <h4 class="index-table table-text"><%= link_to following.username, profile_path(following.id), class: 'btn-link'  %></h4>
                 </td>
                 <td class="index-table table-text">
-                  <% unless following.id == current_user.id %>
-                    <% if current_user.followers.include? following %>
-                      <%= link_to "Unfollow", follow_path(current_user.following_users.where(following_id: following.id)[0]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-theme" %>
-                    <% else %>
-                      <%= link_to "Follow", follow_user_path(following.id), method: :post, class: "btn btn-sm btn-theme" %>
-                    <% end %>
-                  <% end %>
+                  <%= link_to "Unfollow", follow_path(current_user.followed_users.where(followee_id: following.id)[0]), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-theme" %>
                 </td>
               </tr>
             <% end %>

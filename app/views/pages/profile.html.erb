@@ -1,10 +1,4 @@
 <div class="profile-container">
-  <div class="user-container">
-    <div class="user-info">
-      <h1 class="title"><%= @user.username %></h1>
-      <h4 class="title"><%= @user.email %></h4>
-    </div>
-  </div>
   <%= render 'shared/profile_dashboard' %>
   <h2 class="title my-5 text-center"><%= @user.username.capitalize %>'s network</h2>
   <%= render 'shared/profile_friends' %>
